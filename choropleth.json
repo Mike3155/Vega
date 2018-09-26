@@ -1,0 +1,32 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v2.1.json",
+  "width": 500,
+  "height": 300,
+  "data": {
+    "url": "data/us-10m.json",
+    "format": {
+      "type": "topojson",
+      "feature": "counties"
+    }
+  },
+  "transform": [{
+    "lookup": "Damage_Descp",
+    "from": {
+      "data": {
+        "url": "https://raw.githubusercontent.com/Mike3155/Vega/master/losses2015_transformed.csv"
+      },
+      "key": "Amount",
+      "fields": ["Damage_Code"]
+    }
+  }],
+  "projection": {
+    "type": "albersUsa"
+  },
+  "mark": "geoshape",
+  "encoding": {
+    "color": {
+      "field": "",
+      "type": "map"
+    }
+  }
+}
